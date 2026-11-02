@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AISC Practical Exam – All 12 Codes</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f7f7f5;--fg:#1d1d1b;--mut:#6b6b66;--card:#fff;--bd:#dcdcd6;--acc:#2f5fd0;--accfg:#fff;--code:#f1f1ed}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161618;--fg:#ecece8;--mut:#a0a09a;--card:#1f1f22;--bd:#34343a;--acc:#6f95f0;--accfg:#101014;--code:#121214}}
+:root[data-theme="dark"]{--bg:#161618;--fg:#ecece8;--mut:#a0a09a;--card:#1f1f22;--bd:#34343a;--acc:#6f95f0;--accfg:#101014;--code:#121214}
+:root[data-theme="light"]{color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:960px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.35rem;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 16px;font-size:.9rem}
+nav{display:flex;gap:6px;overflow-x:auto;padding:4px 1px 10px;margin-bottom:16px}
+nav a{flex:none;padding:7px 13px;border:1px solid var(--bd);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none;font-size:.9rem}
+nav a.on{background:var(--acc);color:var(--accfg);border-color:var(--acc)}
+h2{font-size:1.1rem;margin:0 0 12px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-bottom:12px}
+.row code{font:13px ui-monospace,Menlo,Consolas,monospace;overflow-x:auto;white-space:nowrap}
+button{flex:none;font:inherit;font-size:.85rem;padding:6px 12px;border-radius:8px;border:1px solid var(--acc);background:var(--acc);color:var(--accfg);cursor:pointer}
+button.secondary{background:var(--card);color:var(--fg);border-color:var(--bd)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0 8px}
+.bar span{color:var(--mut);font-size:.85rem}
+pre{margin:0;background:var(--code);border:1px solid var(--bd);border-radius:10px;padding:14px;overflow:auto;max-height:70vh;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:4;white-space:pre}
+.note{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--mut);font-size:.9rem;margin:12px 0}
+.output{max-height:38vh}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.topline .sub{margin:0}
+@media(max-width:520px){main{padding:16px 12px 30px}.row{align-items:flex-start}.row code{white-space:normal;overflow-wrap:anywhere}pre{font-size:11.5px}}
+</style>
+</head>
+<body>
+<main>
+<div class="topline">
+  <div>
+    <h1>AISC Practical Exam – All 12 Codes</h1>
+    <p class="sub">Select a practical, view the complete Python code and copy it in one click.</p>
+  </div>
+  <button class="secondary" id="themeBtn" type="button">Toggle theme</button>
+</div>
+<nav id="nav" aria-label="Practical navigation"></nav>
+<section id="view" aria-live="polite"></section>
+<div class="note">Source: your uploaded AISC Practical Exam PDF. The recorded output is reproduced as shown in the PDF. Practical 10 uses random values, so a fresh run may produce different results.</div>
+</main>
+<script type="text/plain" id="src-exp1">
+# Define fuzzy sets with elements and their membership degrees
+A = {"x1": 0.2, "x2": 0.7, "x3": 0.4, "x4": 1.0}
+B = {"x1": 0.5, "x2": 0.3, "x3": 0.9, "x4": 0.0}
+# Perform Fuzzy Union (Max), Intersection (Min), and Complement (1 - x)
+fuzzy_union = {k: max(A[k], B[k]) for k in A}
+fuzzy_intersection = {k: min(A[k], B[k]) for k in A}
+fuzzy_complement_A = {k: round(1.0 - A[k], 1) for k in A}
+print("Fuzzy Set A:      ", A)
+print("Fuzzy Set B:      ", B)
+print("Union (A U B):    ", fuzzy_union)
+print("Intersect (A n B):", fuzzy_intersection)
+print("Complement (~A):  ", fuzzy_complement_A)
+</script>
+<script type="text/plain" id="out-exp1">
+Fuzzy Set A:       {'x1': 0.2, 'x2': 0.7, 'x3': 0.4, 'x4': 1.0}
+Fuzzy Set B:       {'x1': 0.5, 'x2': 0.3, 'x3': 0.9, 'x4': 0.0}
+Union (A U B):     {'x1': 0.5, 'x2': 0.7, 'x3': 0.9, 'x4': 1.0}
+Intersect (A n B): {'x1': 0.2, 'x2': 0.3, 'x3': 0.4, 'x4': 0.0}
+Complement (~A):   {'x1': 0.8, 'x2': 0.3, 'x3': 0.6, 'x4': 0.0}
+</script>
+
+<script type="text/plain" id="src-exp2">
+import numpy as np
+# Inputs for AND gate and corresponding targets
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([0, 0, 0, 1])
+# Initialize random weights, bias, and learning rate
+weights = np.array([0.0, 0.0])
+bias = 0.0
+lr = 0.1
+# Training loop over 10 epochs
+for epoch in range(10):
+    for inputs, target in zip(X, y):
+        # Step function activation: 1 if linear combination >= 0 else 0
+        linear_combination = np.dot(inputs, weights) + bias
+        prediction = 1 if linear_combination >= 0 else 0
+        # Update weights and bias based on error
+        error = target - prediction
+        weights += lr * error * inputs
+        bias += lr * error
+# Test final trained output
+print("Trained Weights:", weights, "Bias:", bias)
+print("Predictions for AND gate:")
+for inputs in X:
+    pred = 1 if (np.dot(inputs, weights) + bias) >= 0 else 0
+    print(f"Input: {inputs} -> Predicted Output: {pred}")
+</script>
+<script type="text/plain" id="out-exp2">
+Trained Weights: [0.2 0.1] Bias: -0.20000000000000004
+Predictions for AND gate:
+Input: [0 0] -> Predicted Output: 0
+Input: [0 1] -> Predicted Output: 0
+Input: [1 0] -> Predicted Output: 0
+Input: [1 1] -> Predicted Output: 1
+</script>
+
+<script type="text/plain" id="src-exp3">
+def triangular_membership(x, a, b, c):
+    """Calculates fuzzy membership value for a triangular distribution."""
+    if x <= a or x >= c:
+        return 0.0
+    elif a < x <= b:
+        return (x - a) / (b - a)
+    elif b < x < c:
+        return (c - x) / (c - b)
+    return 0.0
+# Test with parameters: a=2, b=5, c=8
+a, b, c = 2, 5, 8
+test_inputs = [1, 3.5, 5, 6.5, 9]
+print(f"Triangular Function (a={a}, b={b}, c={c}):")
+for x in test_inputs:
+    degree = triangular_membership(x, a, b, c)
+    print(f"  Input x = {x:<4} -> Membership Degree = {degree:.2f}")
+</script>
+<script type="text/plain" id="out-exp3">
+Triangular Function (a=2, b=5, c=8):
+  Input x = 1    -> Membership Degree = 0.00
+  Input x = 3.5  -> Membership Degree = 0.50
+  Input x = 5    -> Membership Degree = 1.00
+  Input x = 6.5  -> Membership Degree = 0.50
+  Input x = 9    -> Membership Degree = 0.00
+</script>
+
+<script type="text/plain" id="src-exp4">
+def trapezoidal_membership(x, a, b, c, d):
+    """Calculates fuzzy membership value for a trapezoidal distribution."""
+    if x <= a or x >= d:
+        return 0.0
+    elif b <= x <= c:
+        return 1.0
+    elif a < x < b:
+        return (x - a) / (b - a)
+    elif c < x < d:
+        return (d - x) / (d - c)
+    return 0.0
+# Test with parameters: a=1, b=3, c=6, d=8
+a, b, c, d = 1, 3, 6, 8
+test_inputs = [0, 2, 4.5, 7, 9]
+print(f"Trapezoidal Function (a={a}, b={b}, c={c}, d={d}):")
+for x in test_inputs:
+    degree = trapezoidal_membership(x, a, b, c, d)
+    print(f"  Input x = {x:<4} -> Membership Degree = {degree:.2f}")
+</script>
+<script type="text/plain" id="out-exp4">
+Trapezoidal Function (a=1, b=3, c=6, d=8):
+  Input x = 0    -> Membership Degree = 0.00
+  Input x = 2    -> Membership Degree = 0.50
+  Input x = 4.5  -> Membership Degree = 1.00
+  Input x = 7    -> Membership Degree = 0.50
+  Input x = 9    -> Membership Degree = 0.00
+</script>
+
+<script type="text/plain" id="src-exp5">
+def mc_culloch_pitts(inputs, weights, threshold):
+    # Calculate the linear combination of inputs and weights
+    net_input = sum(x * w for x, w in zip(inputs, weights))
+    # Threshold firing rule (Output is 1 if net_input >= threshold, else 0)
+    return 1 if net_input >= threshold else 0
+# 1. Simulate AND Gate (Weights =, Threshold = 2)
+# 2. Simulate OR Gate  (Weights =, Threshold = 1)
+inputs_list = [[0, 0], [0, 1], [1, 0], [1, 1]]
+print("AND Gate Simulation:")
+for x in inputs_list:
+    output = mc_culloch_pitts(x, weights=[1, 1], threshold=2)
+    print(f"  Input: {x} -> Output: {output}")
+print("\nOR Gate Simulation:")
+for x in inputs_list:
+    output = mc_culloch_pitts(x, weights=[1, 1], threshold=1)
+    print(f"  Input: {x} -> Output: {output}")
+</script>
+<script type="text/plain" id="out-exp5">
+AND Gate Simulation:
+  Input: [0, 0] -> Output: 0
+  Input: [0, 1] -> Output: 0
+  Input: [1, 0] -> Output: 0
+  Input: [1, 1] -> Output: 1
+OR Gate Simulation:
+  Input: [0, 0] -> Output: 0
+  Input: [0, 1] -> Output: 1
+  Input: [1, 0] -> Output: 1
+  Input: [1, 1] -> Output: 1
+</script>
+
+<script type="text/plain" id="src-exp6">
+# Graph represented as an adjacency list: (Neighbor, Actual Edge Cost)
+graph = {
+    "A": [("B", 1), ("C", 4)],
+    "B": [("D", 5)],
+    "C": [("D", 1)],
+    "D": [],
+}
+# Straight-Line Distance Heuristic values h(n) to target node 'D'
+heuristic = {"A": 6, "B": 4, "C": 1, "D": 0}
+def greedy_best_first(start, goal):
+    """Finds a path to the goal by always expanding the node with lowest h(n)."""
+    visited = set()
+    queue = [[start]]  # Queue stores paths
+    while queue:
+        # Sort queue so the path ending with the lowest heuristic value comes first
+        queue.sort(key=lambda path: heuristic[path[-1]])
+        path = queue.pop(0)
+        node = path[-1]
+        if node == goal:
+            return path
+        if node not in visited:
+            visited.add(node)
+            for neighbor, cost in graph.get(node, []):
+                new_path = list(path)
+                new_path.append(neighbor)
+                queue.append(new_path)
+    return None
+# Execute search from 'A' to 'D'
+solution = greedy_best_first("A", "D")
+print(f"Greedy Best-First Search Path: {solution}")
+</script>
+<script type="text/plain" id="out-exp6">
+Greedy Best-First Search Path: ['A', 'C', 'D']
+</script>
+
+<script type="text/plain" id="src-exp7">
+# Graph layout: { Node: [(Neighbor, Edge_Cost), ...] }
+graph = {
+    "A": [("B", 1), ("C", 4)],
+    "B": [("D", 5)],
+    "C": [("D", 1)],
+    "D": [],
+}
+# Heuristic values h(n) estimating distance to goal 'D'
+heuristic = {"A": 6, "B": 4, "C": 1, "D": 0}
+def a_star_search(start, goal):
+    """Finds the optimal path from start to goal minimizing f(n) = g(n) + h(n)."""
+    # Items in queue format: (total_estimated_cost_f, current_actual_cost_g, [path_nodes])
+    queue = [(heuristic[start], 0, [start])]
+    visited = set()
+    while queue:
+        # Sort queue to ensure we always expand the path with the lowest f(n)
+        queue.sort(key=lambda x: x[0])
+        f, g, path = queue.pop(0)
+        node = path[-1]
+        if node == goal:
+            return path, g
+        if node not in visited:
+            visited.add(node)
+            for neighbor, cost in graph.get(node, []):
+                new_g = g + cost
+                new_f = new_g + heuristic[neighbor]
+                queue.append((new_f, new_g, path + [neighbor]))
+    return None, float("inf")
+# Execute A* search from 'A' to 'D'
+optimal_path, total_cost = a_star_search("A", "D")
+print(f"Optimal A* Path: {optimal_path}")
+print(f"Total Path Cost: {total_cost}")
+</script>
+<script type="text/plain" id="out-exp7">
+Optimal A* Path: ['A', 'C', 'D']
+Total Path Cost: 5
+</script>
+
+<script type="text/plain" id="src-exp8">
+import numpy as np
+# Define binary patterns as flat arrays using bipolar values (-1 and 1)
+pattern_A = np.array([1, 1, -1, -1])
+# 1. Training Phase: Compute Weight Matrix using Hebbian Learning Rule
+# W = outer_product(A, A) and set the diagonal elements to 0 (no self-connection)
+W = np.outer(pattern_A, pattern_A)
+np.fill_diagonal(W, 0)
+def recall(test_pattern, weights, steps=5):
+    """Asynchronously or synchronously updates state to recall the stored memory."""
+    state = np.array(test_pattern)
+    for _ in range(steps):
+        # Calculate network activation energy and apply hard-threshold sign function
+        raw_activation = np.dot(weights, state)
+        state = np.where(raw_activation >= 0, 1, -1)
+    return state
+# Test data: Introduce noise into pattern_A (flip the last element from -1 to 1)
+noisy_input = np.array([1, 1, -1, 1])
+recovered_output = recall(noisy_input, W)
+print("Stored Pattern (Memory):", pattern_A)
+print("Noisy Input Provided:   ", noisy_input)
+print("Recovered Memory Output:", recovered_output)
+</script>
+<script type="text/plain" id="out-exp8">
+Stored Pattern (Memory): [ 1  1 -1 -1]
+Noisy Input Provided:    [ 1  1 -1  1]
+Recovered Memory Output: [ 1  1 -1 -1]
+</script>
+
+<script type="text/plain" id="src-exp9">
+# Bounded sum: min(1, A + B) | Bounded difference: max(0, A + B - 1)
+A = {"x1": 0.6, "x2": 0.4, "x3": 0.9}
+B = {"x1": 0.5, "x2": 0.2, "x3": 0.3}
+bounded_sum = {k: min(1.0, A[k] + B[k]) for k in A}
+bounded_diff = {k: max(0.0, round(A[k] + B[k] - 1.0, 1)) for k in A}
+print("Fuzzy Set A:        ", A)
+print("Fuzzy Set B:        ", B)
+print("Bounded Sum:        ", bounded_sum)
+print("Bounded Difference: ", bounded_diff)
+</script>
+<script type="text/plain" id="out-exp9">
+Fuzzy Set A:         {'x1': 0.6, 'x2': 0.4, 'x3': 0.9}
+Fuzzy Set B:         {'x1': 0.5, 'x2': 0.2, 'x3': 0.3}
+Bounded Sum:         {'x1': 1.0, 'x2': 0.6000000000000001, 'x3': 1.0}
+Bounded Difference:  {'x1': 0.1, 'x2': 0.0, 'x3': 0.2}
+</script>
+
+<script type="text/plain" id="src-exp10">
+import random
+# Configuration
+chromosome_length = 8
+mutation_rate = 0.1
+# Generate two random binary chromosomes (Parents)
+parent1 = [random.randint(0, 1) for _ in range(chromosome_length)]
+parent2 = [random.randint(0, 1) for _ in range(chromosome_length)]
+def crossover_and_mutate(p1, p2):
+    # Single-point crossover: swap bits after a random index split point
+    split = random.randint(1, chromosome_length - 1)
+    child = p1[:split] + p2[split:]
+    # Bit-flip mutation: invert bit if random probability hits mutation rate
+    mutated_child = [
+        bit if random.random() > mutation_rate else 1 - bit for bit in child
+    ]
+    return child, mutated_child, split
+child, mutated, split_point = crossover_and_mutate(parent1, parent2)
+print("Parent 1:       ", parent1)
+print("Parent 2:       ", parent2)
+print(f"Crossover Child (Split at index {split_point}):", child)
+print("Mutated Child:  ", mutated)
+</script>
+<script type="text/plain" id="out-exp10">
+Parent 1:        [1, 1, 0, 1, 0, 0, 1, 0]
+Parent 2:        [1, 0, 1, 1, 0, 1, 1, 1]
+Crossover Child (Split at index 4): [1, 1, 0, 1, 0, 1, 1, 1]
+Mutated Child:   [0, 1, 0, 1, 0, 1, 1, 0]
+</script>
+
+<script type="text/plain" id="src-exp11">
+import numpy as np
+# Bipolar Input pattern vector X and resulting Bipolar Output y
+X = np.array([1, -1, 1])
+y = 1
+learning_rate = 1.0
+initial_weights = np.array([0.0, 0.0, 0.0])
+def hebbian_update(weights, inputs, output, lr):
+    """Adjusts weights based on synchronous activation."""
+    # Delta W = learning_rate * input * output
+    delta_w = lr * inputs * output
+    new_weights = weights + delta_w
+    return new_weights, delta_w
+final_w, change = hebbian_update(initial_weights, X, y, learning_rate)
+print("Initial Weights: ", initial_weights)
+print("Weight Delta:    ", change)
+print("Updated Weights: ", final_w)
+</script>
+<script type="text/plain" id="out-exp11">
+Initial Weights:  [0. 0. 0.]
+Weight Delta:     [ 1. -1.  1.]
+Updated Weights:  [ 1. -1.  1.]
+</script>
+
+<script type="text/plain" id="src-exp12">
+# Graph dictionary representation
+graph = {"A": ["B", "C"], "B": ["D", "E"], "C": ["F"], "D": [], "E": [], "F": []}
+def bfs_traverse(start_node):
+    visited = []
+    queue = [start_node]
+    while queue:
+        node = queue.pop(0)  # Dequeue first element (FIFO)
+        if node not in visited:
+            visited.append(node)
+            # Append all unvisited neighbors to the back of the queue
+            queue.extend([n for n in graph[node] if n not in visited])
+    return visited
+print("BFS Traversal Order starting from A:", bfs_traverse("A"))
+</script>
+<script type="text/plain" id="out-exp12">
+BFS Traversal Order starting from A: ['A', 'B', 'C', 'D', 'E', 'F']
+</script>
+<script>
+var EXPS = [
+ {id:'exp1',t:'Fuzzy Set Operations (Union, Intersection, Complement)',i:'No external libraries required.'},
+ {id:'exp2',t:'Single-Layer Perceptron (AND Gate)',i:'python -m pip install numpy'},
+ {id:'exp3',t:'Triangular Membership Function',i:'No external libraries required.'},
+ {id:'exp4',t:'Trapezoidal Membership Function',i:'No external libraries required.'},
+ {id:'exp5',t:'McCulloch-Pitts Neuron (Logic Gates)',i:'No external libraries required.'},
+ {id:'exp6',t:'Heuristic Search Algorithm (Greedy Best-First Search)',i:'No external libraries required.'},
+ {id:'exp7',t:'A* Search Algorithm',i:'No external libraries required.'},
+ {id:'exp8',t:'Associative Memory Network (Hopfield Network)',i:'python -m pip install numpy'},
+ {id:'exp9',t:'Fuzzy Bounded Sum and Difference',i:'No external libraries required.'},
+ {id:'exp10',t:'Genetic Algorithm (Crossover and Mutation Loop)',i:'No external libraries required.'},
+ {id:'exp11',t:'Hebbian Learning Rule (Unsupervised Weight Update)',i:'python -m pip install numpy'},
+ {id:'exp12',t:'Breadth-First Search (BFS Graph Traversal)',i:'No external libraries required.'}
+];
+
+function copyText(text, btn){
+  var done = function(){var old=btn.textContent;btn.textContent='Copied ✓';setTimeout(function(){btn.textContent=old;},1400);};
+  var fallback = function(){
+    var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}catch(e){btn.textContent='Select and copy manually';}
+    document.body.removeChild(ta);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done,fallback);
+  }else{fallback();}
+}
+function el(tag, cls, text){
+  var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;
+}
+function getText(id){
+  var node=document.getElementById(id);
+  return node ? node.textContent.replace(/^\n+|\n+$/g,'')+'\n' : '';
+}
+function render(){
+  var id=(location.hash||'').slice(1);
+  var ex=EXPS.filter(function(x){return x.id===id;})[0]||EXPS[0];
+  var nav=document.getElementById('nav');nav.innerHTML='';
+  EXPS.forEach(function(x){
+    var a=el('a',x.id===ex.id?'on':'','Exp '+x.id.slice(3));
+    a.href='#'+x.id;a.setAttribute('aria-current',x.id===ex.id?'page':'false');nav.appendChild(a);
+  });
+  var v=document.getElementById('view');v.innerHTML='';
+  v.appendChild(el('h2','', 'Experiment '+ex.id.slice(3)+' – '+ex.t));
+  var install=el('div','row');
+  install.appendChild(el('code','',ex.i));
+  var bi=el('button','secondary','Copy install info');
+  bi.onclick=function(){copyText(ex.i,bi);};install.appendChild(bi);v.appendChild(install);
+
+  var code=getText('src-'+ex.id);
+  var out=getText('out-'+ex.id);
+  var bar=el('div','bar');
+  bar.appendChild(el('span','','Python code · '+code.split('\n').length+' lines'));
+  var bc=el('button','','Copy code');bc.onclick=function(){copyText(code,bc);};bar.appendChild(bc);v.appendChild(bar);
+  var pre=el('pre');pre.appendChild(el('code','',code));v.appendChild(pre);
+
+  var outBar=el('div','bar');
+  outBar.appendChild(el('span','','Recorded output from PDF'));
+  var bo=el('button','secondary','Copy output');bo.onclick=function(){copyText(out,bo);};outBar.appendChild(bo);v.appendChild(outBar);
+  var outPre=el('pre','output');outPre.appendChild(el('code','',out));v.appendChild(outPre);
+}
+document.getElementById('themeBtn').onclick=function(){
+  var root=document.documentElement;
+  var current=root.getAttribute('data-theme');
+  root.setAttribute('data-theme',current==='dark'?'light':'dark');
+};
+window.addEventListener('hashchange',render);
+render();
+</script>
+</body>
+</html>
